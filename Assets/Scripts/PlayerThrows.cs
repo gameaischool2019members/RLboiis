@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerThrows : MonoBehaviour
 {
     public GameObject texMexProjecc;
+    public bool proteccProjecc;
     public float throwHeight;
     public float throwDistance;
     public KeyCode throwKey;
@@ -32,7 +33,10 @@ public class PlayerThrows : MonoBehaviour
             GameObject projecc = Instantiate(texMexProjecc, transform.position - new Vector3(GetComponent<SpriteRenderer>().bounds.size.x / 2, 0, 0), Quaternion.identity);
             projecc.GetComponent<Rigidbody2D>().velocity = new Vector3(throwDistance,throwHeight,0.0f);
 
-            Destroy(projecc, throwDelay);
+            if (!proteccProjecc)
+            {
+                Destroy(projecc, throwDelay);
+            }
         }
     }
 }
